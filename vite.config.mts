@@ -1,7 +1,8 @@
-import { defineConfig } from "npm:vite@^5.0.10";
-import vue from "npm:@vitejs/plugin-vue@^4.5.2";
+import { defineConfig } from "npm:vite@latest";
+import vue from "npm:@vitejs/plugin-vue@latest";
 
-import "npm:vue@^3.3.13";
+import "npm:vue@latest";
+import "npm:vue-router@latest";
 
 // https://vitejs.dev/config/
 export default defineConfig({
