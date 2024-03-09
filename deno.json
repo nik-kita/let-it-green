@@ -10,8 +10,5 @@
     "rules": {
       "exclude": ["no-explicit-any", "ban-types"]
     }
-  },
-  "compilerOptions": {
-    "strict": true
   }
 }
