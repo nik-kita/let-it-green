@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./pages/router.ts";
 import "./style.css";
+import GButton from "vue3-google-login";
 
 if (import.meta.env.PROD) {}
 else {
@@ -12,4 +13,6 @@ else {
   });
 }
 
-createApp(App).use(router).mount("#app");
+createApp(App).use(router).use(GButton, {
+  clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+}).mount("#app");

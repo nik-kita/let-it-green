@@ -4,9 +4,16 @@ import {
   type RouteRecordRaw,
 } from "vue-router";
 import type { OmitReplace } from "../utils/types";
+import LoginPage from "./LoginPage.vue";
 import { type ENDPOINT_NAME } from "./const";
 
-const routes = [] satisfies MyRouterRecordRow[];
+const routes = [
+  {
+    path: "/login",
+    name: "Login",
+    component: LoginPage,
+  },
+] satisfies MyRouterRecordRow[];
 const router = createRouter({
   history: createWebHistory(),
   routes,

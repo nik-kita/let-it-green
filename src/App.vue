@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import Button from './components/Button.vue';
+import { RouterView } from 'vue-router';
 
 const apiLabRes = ref<object>();
 
@@ -12,6 +13,8 @@ const fetchData = async () => {
 
 <template>
   <div class="app root">
+    <RouterView />
+    <RouterLink to="/login">Login</RouterLink>
     <Button @click="fetchData">Click me!</Button>
     <pre>{{ apiLabRes }}</pre>
   </div>

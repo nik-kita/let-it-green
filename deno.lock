@@ -10,6 +10,7 @@
       "npm:vite@^5.0.10": "npm:vite@5.1.5",
       "npm:vite@latest": "npm:vite@5.1.5",
       "npm:vue-router@latest": "npm:vue-router@4.3.0_vue@3.4.21",
+      "npm:vue3-google-login@latest": "npm:vue3-google-login@2.0.26_vue@3.4.21",
       "npm:vue@^3.3.13": "npm:vue@3.4.21",
       "npm:vue@latest": "npm:vue@3.4.21"
     },
@@ -366,6 +367,12 @@
         "integrity": "sha512-dqUcs8tUeG+ssgWhcPbjHvazML16Oga5w34uCUmsk7i0BcnskoLGwjpa15fqMr2Fa5JgVBrdL2MEgqz6XZ/6IQ==",
         "dependencies": {
           "@vue/devtools-api": "@vue/devtools-api@6.6.1",
+          "vue": "vue@3.4.21"
+        }
+      },
+      "vue3-google-login@2.0.26_vue@3.4.21": {
+        "integrity": "sha512-BuTSIeSjINNHNPs+BDF4COnjWvff27IfCBDxK6JPRqvm57lF8iK4B3+zcG8ud6BXfZdyuiDlxletbEDgg4/RFA==",
+        "dependencies": {
           "vue": "vue@3.4.21"
         }
       },
