@@ -1,24 +1,14 @@
 <script setup lang="ts">
-import { GoogleLogin, type CallbackTypes } from 'vue3-google-login';
+import { GoogleLogin } from 'vue3-google-login';
+import type { Credentials } from '~/shared/gbutton-types.ts';
 
-
-const props = defineProps<{
-  callback?: CallbackTypes.CredentialCallback,
-}>();
-const emit = defineEmits<{
+defineEmits<{
   emitCredentials: [res: Credentials],
 }>();
 
-const callback: CallbackTypes.CredentialCallback = props.callback || ((response) => {
-  console.log(response);
-});
 
 </script>
 
 <template>
-  <GoogleLogin :callback />
+  <GoogleLogin :callback="(arg: Credentials) => $emit('emitCredentials', arg)" />
 </template>
-
-<script lang="ts">
-type Credentials = Parameters<CallbackTypes.CredentialCallback>[0];
-</script>
