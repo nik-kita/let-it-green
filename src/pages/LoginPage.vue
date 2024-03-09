@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import Button from '../components/Button.vue';
+import GButtonWrapper from '../components/GButtonWrapper.vue';
 
 const mockAuth = ref(false);
 
@@ -12,4 +13,5 @@ const toggleMockAuth = () => {
 
 <template>
   <Button @click="toggleMockAuth">{{ mockAuth ? 'Set Login = true' : 'Set Login = false' }}</Button>
+  <GButtonWrapper v-if="mockAuth" />
 </template>
