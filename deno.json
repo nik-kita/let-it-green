@@ -8,7 +8,7 @@
   "exclude": ["dist", "node_modules", ".vite"],
   "lint": {
     "rules": {
-      "exclude": ["no-explicit-any", "ban-types"]
+      "exclude": ["no-explicit-any", "ban-types", "no-empty"]
     }
   }
 }
