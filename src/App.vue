@@ -1,22 +1,19 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import Button from './components/Button.vue';
 import { RouterView } from 'vue-router';
+import Button from './components/Button.vue';
+import Placeholder from './components/Placeholder.vue';
 
-const apiLabRes = ref<object>();
 
-const fetchData = async () => {
-  const response = await fetch('http://localhost:3000/api/lab', { method: 'post' });
-  apiLabRes.value = await response.json();
-};
 </script>
 
 <template>
   <div class="app root">
     <RouterView />
-    <RouterLink to="/login">Login</RouterLink>
-    <Button @click="fetchData">Click me!</Button>
-    <pre>{{ apiLabRes }}</pre>
+    <Placeholder height="20px" width="100px">
+      <Button>
+        <RouterLink to="/login">Login</RouterLink>
+      </Button>
+    </Placeholder>
   </div>
 </template>
 
