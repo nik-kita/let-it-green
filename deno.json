@@ -1,7 +1,8 @@
 {
   "imports": {
     "vue3-google-login": "npm:vue3-google-login",
-    "~/shared/": "./shared/"
+    "~/shared/": "./shared/",
+    "~/models/": "./models/"
   },
   "tasks": {
     "dev": "deno run -A --node-modules-dir npm:vite",
