@@ -9,10 +9,21 @@
     "preview": "deno run -A --node-modules-dir npm:vite preview",
     "serve": "deno run --allow-net --allow-read https://deno.land/std@0.157.0/http/file_server.ts dist/"
   },
+  "compilerOptions": {
+    "noUnusedLocals": false,
+    "strictNullChecks": true,
+    "strictBindCallApply": true
+  },
   "exclude": ["dist", "node_modules", ".vite"],
   "lint": {
     "rules": {
-      "exclude": ["no-explicit-any", "ban-types", "no-empty"]
+      "exclude": [
+        "no-explicit-any",
+        "ban-types",
+        "no-empty",
+        "no-unused-vars",
+        "require-await"
+      ]
     }
   }
 }
