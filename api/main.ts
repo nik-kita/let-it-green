@@ -1,38 +1,28 @@
-import { load } from "https://deno.land/std@0.219.0/dotenv/mod.ts";
-import { HTTPException } from "https://deno.land/x/hono@v4.0.10/http-exception.ts";
-import { cors } from "https://deno.land/x/hono@v4.0.10/middleware/cors/index.ts";
-/* @deno-types="npm:hono" */
-import { Hono } from "https://deno.land/x/hono@v4.0.10/mod.ts";
-import { verify_google_credential } from "./helpers/verify-google-credential.ts";
+import { showRoutes } from "hono/helper/dev/index.ts";
+import { cors } from "hono/middleware/cors/index.ts";
+import { logger } from "hono/middleware/logger/index.ts";
+import { Hono } from "hono/mod.ts";
+import { gen_api } from "~/api/api.ts";
+import { gen_pentagon } from "~/api/pentagon/index.ts";
+import { sign_in } from "~/api/handlers/sing-in.ts";
+import { zValidator } from "~/api/helpers/zod-validaotr.ts";
+import { IsSignInReq } from "~/models/req-res/sign-in.ts";
 
-const env = await load();
-const google_client_id = env["VITE_GOOGLE_CLIENT_ID"];
-const api = new Hono();
+const api = await gen_api({
+  pentagon: await gen_pentagon(await Deno.openKv("./lab.db")),
+}, {});
 
-api
-  .use(cors())
-  .post("/lab", (c) => {
-    return c.json({ message: "Hello, World!" });
-  })
-  .post("/login", async (c) => {
-    const body = await c.req.json();
-    const result = await verify_google_credential(body.credential, {
-      google_client_id,
-    });
+const app = new Hono()
+  .use("/*", cors())
+  .use(logger())
+  // .route("/api", api)
+  .route(
+    "/api",
+    new Hono().post("/sign-in", zValidator("json", IsSignInReq)),
+  );
 
-    if (result.ok) {
-      return c.json(result);
-    }
+showRoutes(app, { colorize: true, verbose: true });
 
-    throw new HTTPException(401, {
-      res: new Response("Unauthorized", {
-        status: 401,
-        statusText: result.err,
-      }),
-    });
-  });
-
-Deno.serve(
-  { port: 3000 },
-  new Hono().route("/api", api).fetch,
-);
+Deno.serve({
+  port: 3000,
+}, app.fetch);

@@ -12,7 +12,8 @@ export const IsUser = z.object({
     .max(100)
     .describe("Unique identifier for auth provider"),
   createdAt: z
-    .date(),
+    .number()
+    .int(),
   email: z
     .string()
     .email()
