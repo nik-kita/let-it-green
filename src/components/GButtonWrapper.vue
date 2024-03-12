@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { GoogleLogin } from 'vue3-google-login';
-import type { Credentials } from '~/shared/gbutton-types.ts';
+import type { Credentials } from '@project/shared/gbutton-types.ts';
 
 defineEmits<{
   emitCredentials: [res: Credentials],

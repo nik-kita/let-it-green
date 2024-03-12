@@ -1,6 +1,6 @@
-import z from "https://deno.land/x/zod@v3.21.4/index.ts";
-import { User } from "~/models/user.ts";
-import { AUTH_PROVIDERS } from "~/shared/const.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/index.ts";
+import { User } from "@project/models/user.ts";
+import { AUTH_PROVIDERS } from "@project/shared/const.ts";
 
 export const IsGoogleSignInReq = z.object({
   credential: z.string().min(20).max(100),
@@ -9,7 +9,7 @@ export const IsGoogleSignInReq = z.object({
 });
 export const IsSignInReq = z.union([
   IsGoogleSignInReq,
-  IsGoogleSignInReq, // TODO replace with some new auth provider
+  z.never(), // TODO replace with some new auth provider
 ]);
 export type SignInReq = z.input<typeof IsSignInReq>;
 export type TokenPair = {

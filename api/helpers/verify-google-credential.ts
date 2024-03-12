@@ -3,37 +3,24 @@ import {
   jwtVerify,
 } from "https://deno.land/x/jose@v4.13.1/index.ts";
 
-export async function verify_google_credential(credential: string, options: {
+export const gen_verify_google_credential = async ({
+  credential,
+  google_client_id,
+}: {
+  credential: string;
   google_client_id: string;
-  issuer?: string;
-  remote_google_jwk_set_url?: string;
-}) {
-  const {
-    google_client_id,
+}) => {
+  const create_jwk_set_fn = createRemoteJWKSet;
+  const remote_google_jwk_set_url =
+    "https://www.googleapis.com/oauth2/v3/certs";
+  const issuer = "https://accounts.google.com";
+  const jwt_verify_fn = jwtVerify;
+
+  const JWKS = await create_jwk_set_fn(
+    new URL(remote_google_jwk_set_url),
+  );
+  return jwt_verify_fn(credential, JWKS, {
     issuer,
-    remote_google_jwk_set_url,
-  } = {
-    remote_google_jwk_set_url: "https://www.googleapis.com/oauth2/v3/certs",
-    issuer: "https://accounts.google.com",
-    ...options,
-  };
-
-  try {
-    const JWKS = await createRemoteJWKSet(new URL(remote_google_jwk_set_url));
-    const { payload, protectedHeader } = await jwtVerify(credential, JWKS, {
-      issuer,
-      audience: google_client_id,
-    });
-
-    return {
-      ok: true,
-      payload,
-      protectedHeader,
-    } as const;
-  } catch (err) {
-    return {
-      ok: false,
-      err,
-    } as const;
-  }
-}
+    audience: google_client_id,
+  });
+};

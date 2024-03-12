@@ -1,5 +1,5 @@
 import { z } from "https://deno.land/x/zod@v3.21.4/mod.ts";
-import { AUTH_PROVIDERS, FULL_NAME_REGEX } from "~/shared/const.ts";
+import { AUTH_PROVIDERS, FULL_NAME_REGEX } from "@project/shared/const.ts";
 
 export const IsUser = z.object({
   id: z
@@ -12,7 +12,8 @@ export const IsUser = z.object({
     .max(100)
     .describe("Unique identifier for auth provider"),
   createdAt: z
-    .date(),
+    .number()
+    .int(),
   email: z
     .string()
     .email()

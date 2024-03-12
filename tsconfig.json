@@ -7,10 +7,10 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "~/shared/*": [
+      "@project/shared/*": [
         "./shared/*"
       ],
-      "~/models/*": [
+      "@project/models/*": [
         "./models/*"
       ]
     },
