@@ -36,8 +36,6 @@ function make_slottable<
           ...default_option,
           ...runtime_options[i],
         };
-        console.log(result);
-
         return result as ReturnType<Origin>;
       }),
     );

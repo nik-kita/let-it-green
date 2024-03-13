@@ -25,7 +25,6 @@ const makeLoginApiReq = async () => {
       method: 'post',
       body: JSON.stringify(googleRes.value),
     });
-    console.log(data);
     if (!data.ok) {
       loginRes.value = { error: 'Error in API call', data: JSON.parse(JSON.stringify(data)) };
       return;
