@@ -194,5 +194,31 @@ Deno.test("tiny logic implementation", async (t) => {
       assertNotEquals(jRes, { hello: "world" });
       assertEquals(jRes, { boom: "!" });
     });
-   });
+    await tt.step(
+      "previous strange test with better usage... also should work",
+      async () => {
+        const stuff = SlottableStuff.init();
+        stuff.replace<MiddlewareHandler>("t", {
+          fn: async (c) => {
+            return c.json({
+              boom: "!",
+            });
+          },
+        });
+        const app = new Hono().get(
+          "/test",
+          stuff.enroll((c) => {
+            return c.json({
+              hello: "world",
+              q: c.req.query(),
+            });
+          }, "t"),
+        );
+        const res = await testClient(app)["test"].$get();
+        const jRes = await res.json();
+        assertNotEquals(jRes, { hello: "world", q: {} });
+        assertEquals(jRes, { boom: "!" });
+      },
+    );
+  });
 });
