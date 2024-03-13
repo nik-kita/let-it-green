@@ -568,6 +568,7 @@
     "https://deno.land/x/hono@v4.0.10/context.ts": "2c6b270ca580a46335d04bb5aac39ac13d00e7e4910f54deba446c0a93f0401f",
     "https://deno.land/x/hono@v4.0.10/helper/cookie/index.ts": "9adc57af5723f16d52ec1162838ac3c77dc2c8b9e216762e7c68106c7468cc77",
     "https://deno.land/x/hono@v4.0.10/helper/dev/index.ts": "39309b1ea098feaf03dd564ad23290d11e0aa495f3dd64400b3affcf79937f72",
+    "https://deno.land/x/hono@v4.0.10/helper/testing/index.ts": "bc49c049aa0d6426417e3d1a2f52a471a09edb1fb8610b7545eae1968e7d7874",
     "https://deno.land/x/hono@v4.0.10/hono-base.ts": "d3323a4668796cd56b9061ad34f2fa12a3c52178890cfffe27bd077e263c0ab7",
     "https://deno.land/x/hono@v4.0.10/hono.ts": "23edd0140bf0bd5a68c14ae96e5856a5cec6b844277e853b91025e91ea74f416",
     "https://deno.land/x/hono@v4.0.10/http-exception.ts": "0dc357bbf1510f59cdfc35aad569df97e5652f7406f0693437fe140383d8d9c0",

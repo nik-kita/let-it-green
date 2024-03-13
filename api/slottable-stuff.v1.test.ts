@@ -1,5 +1,7 @@
 import { is_plain_obj } from "@project/shared/utils.ts";
 import { assertEquals, assertNotEquals } from "deno/assert";
+import { testClient } from "hono/helper/testing/index.ts";
+import { Hono, MiddlewareHandler } from "hono/mod.ts";
 
 Deno.test("tiny logic implementation", async (t) => {
   class SlottableStuff {
@@ -70,17 +72,19 @@ Deno.test("tiny logic implementation", async (t) => {
         if (_args) {
           if (replacement.type === "merge-otherwise-replace") {
             return ((...args: any[]) => {
-              return cb(args.map((a, i) => {
+              const merged_args = args.map((a, i) => {
                 const _a = _args[i];
-                if (is_plain_obj(_a)) {
-                  return {
-                    ...(is_plain_obj(a) && a),
-                    ..._a,
-                  };
+                // may be little better solution for "this" safety
+                if (is_plain_obj(_a) && is_plain_obj(a)) {
+                  for (const k in _a) {
+                    a[k] = _a[k];
+                  }
+                  return a;
                 } else {
                   return _a;
                 }
-              }));
+              });
+              return cb(...merged_args);
             }) as T;
           } else if (replacement.type === "simply-replace") {
             return ((...args: any[]) => cb(..._args)) as T;
@@ -122,4 +126,73 @@ Deno.test("tiny logic implementation", async (t) => {
     assertEquals(app(...original_args), 3);
     assertEquals(enrolled_app(...original_args), 7);
   });
+
+  await t.step("test with Hono middleware", async (tt) => {
+    await tt.step("should do nothing", async () => {
+      const stuff = SlottableStuff.init();
+      const app = new Hono().get(
+        "/test",
+        stuff.enroll((c) => {
+          return c.json({
+            hello: "world",
+            q: c.req.query(),
+          });
+        }, "t"),
+      );
+      const res = await testClient(app)["test"].$get();
+      const jRes = await res.json();
+      assertEquals(jRes, { hello: "world", q: {} });
+    });
+    await tt.step("should replace handler", async () => {
+      const stuff = SlottableStuff.init();
+      stuff.replace<MiddlewareHandler>("t", {
+        fn: async (c) => {
+          return c.json({
+            world: "hello",
+            q: c.req.query(),
+          });
+        },
+      });
+      const app = new Hono().get(
+        "/test",
+        stuff.enroll((c) => {
+          return c.json({
+            hello: "world",
+            q: c.req.query(),
+          });
+        }, "t"),
+      );
+      const res = await testClient(app)["test"].$get();
+      const jRes = await res.json();
+      assertNotEquals(jRes, { hello: "world", q: {} });
+      assertEquals(jRes, { world: "hello", q: {} });
+    });
+    await tt.step("strange test... but should work", async () => {
+      const stuff = SlottableStuff.init();
+      stuff.replace<MiddlewareHandler>("t", {
+        args: [
+          {
+            json() {
+              return Promise.resolve(
+                new Response(JSON.stringify({ boom: "!" })),
+              );
+            },
+          } as any,
+        ] as any,
+        type: "merge-otherwise-replace",
+      });
+      const app = new Hono().get(
+        "/test",
+        stuff.enroll((c) => {
+          return c.json({
+            hello: "world",
+          });
+        }, "t"),
+      );
+      const res = await testClient(app)["test"].$get();
+      const jRes = await res.json();
+      assertNotEquals(jRes, { hello: "world" });
+      assertEquals(jRes, { boom: "!" });
+    });
+   });
 });
