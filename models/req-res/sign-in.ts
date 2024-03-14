@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { type User } from "../user.ts";
 import { AUTH_PROVIDERS } from "../../shared/const.ts";
+import { type User } from "../user.ts";
 
 export const IsGoogleSignInReq = z.object({
   credential: z.string(),

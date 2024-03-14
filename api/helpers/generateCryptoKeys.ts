@@ -45,9 +45,9 @@ const exportedPublicKey: ArrayBuffer = await crypto.subtle.exportKey(
 );
 const privateKeyPem = toPem(privateKeyBuffer, "private");
 const publicKeyPem = toPem(exportedPublicKey, "public");
-console.log("\n");
-console.log(btoa(privateKeyPem), "\n\n");
-console.log(btoa(publicKeyPem));
+console.debug("\n");
+console.debug(btoa(privateKeyPem), "\n\n");
+console.debug(btoa(publicKeyPem));
 
 /**
  * @link

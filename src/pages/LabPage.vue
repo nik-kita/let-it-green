@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { IsSignInReq, SignInReq } from '../../models/req-res/sign-in.ts';
 import { ref } from 'vue';
+import { IsSignInReq, SignInReq } from '../../models/req-res/sign-in.ts';
 import Button from '../components/Button.vue';
 import GButtonWrapper from '../components/GButtonWrapper.vue';
 import Placeholder from '../components/Placeholder.vue';
@@ -26,7 +26,7 @@ const makeLoginApiReq = async () => {
       credential: googleRes.value.credential,
     };
     const payload = IsSignInReq.parse(signInPayload);
-    const data = await fetch('http://localhost:3000/api/sign-in', {
+    const data = await fetch('http://localhost:3000/api/auth/sign-in', {
       method: 'post',
       body: JSON.stringify(payload),
       headers: {
@@ -43,11 +43,8 @@ const makeLoginApiReq = async () => {
     loginRes.value = { error: String(e) };
   }
 }
-const hello = ref('...');
-const hello_world_api = async () => {
-  const res = await fetch('http://localhost:3000');
-  hello.value = await res.text();
-}
+
+
 </script>
 
 <template>
@@ -76,12 +73,7 @@ const hello_world_api = async () => {
       credentials
       above</Button>
   </Placeholder>
-  <Placeholder height="50px">
-    <Button @click="hello_world_api">
-      hello world
-    </Button>
-  </Placeholder>
-  <pre>{{ hello }}</pre>
+
   <pre v-if="loginRes">{{ loginRes }}</pre>
 </template>
 

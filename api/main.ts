@@ -1,10 +1,10 @@
+import { load } from "deno/std/dotenv/mod.ts";
 import { showRoutes } from "hono/helper/dev/index.ts";
 import { cors } from "hono/middleware/cors/index.ts";
 import { logger } from "hono/middleware/logger/index.ts";
 import { Hono } from "hono/mod.ts";
-import { api } from "./api.ts";
 import { bricks } from "./bricks.ts";
-import { load } from "deno/std/dotenv/mod.ts";
+import { auth } from "./handlers/auth/index.ts";
 
 await load({ export: true });
 
@@ -16,10 +16,8 @@ const app = new Hono()
     "cors()",
   ))
   .use(logger())
-  .route("/api", api)
-  .all("/", (c) => {
-    return c.text("Hello, world!");
-  });
+  .basePath("/api")
+  .route("/auth", auth);
 
 showRoutes(app, { verbose: true });
 

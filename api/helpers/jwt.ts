@@ -5,9 +5,10 @@ import {
   type Payload,
   verify,
 } from "djwt";
+import { bricks } from "../bricks.ts";
 import { convertToCryptoKey } from "./convertCryptoKey.ts";
 
-export const signJwt = async ({
+export const signJwt = bricks.enroll(async ({
   user_id,
   issuer,
   privateKeyPem,
@@ -41,9 +42,9 @@ export const signJwt = async ({
   const token = await create(header, payload, crytoPrivateKey!);
 
   return { token };
-};
+}, "signJwt");
 
-export const verifyJwt = async <T>({
+export const verifyJwt = bricks.enroll(async <T>({
   token,
   publicKeyPem,
 }: {
@@ -58,7 +59,7 @@ export const verifyJwt = async <T>({
 
     return verify(token, crytoPublicKey!) as Promise<T>;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return null;
   }
-};
+}, "verifyJwt");
