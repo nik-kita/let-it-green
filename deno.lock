@@ -11,6 +11,7 @@
       "npm:@vue/tsconfig@latest": "npm:@vue/tsconfig@0.5.1",
       "npm:google-auth-library": "npm:google-auth-library@9.6.3",
       "npm:google-auth-library@latest": "npm:google-auth-library@9.6.3",
+      "npm:pinia@latest": "npm:pinia@2.1.7_vue@3.4.21",
       "npm:superjson@1.13.3": "npm:superjson@1.13.3",
       "npm:vite": "npm:vite@5.1.5",
       "npm:vite@4.5.0": "npm:vite@4.5.0",
@@ -748,6 +749,14 @@
         "integrity": "sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==",
         "dependencies": {}
       },
+      "pinia@2.1.7_vue@3.4.21": {
+        "integrity": "sha512-+C2AHFtcFqjPih0zpYuvof37SFxMQ7OEG2zV9jRI12i9BOy3YQVAHwdKtyyc8pDcDyIc33WCIsZaCFWU7WWxGQ==",
+        "dependencies": {
+          "@vue/devtools-api": "@vue/devtools-api@6.6.1",
+          "vue": "vue@3.4.21",
+          "vue-demi": "vue-demi@0.14.7_vue@3.4.21"
+        }
+      },
       "postcss@8.4.35": {
         "integrity": "sha512-u5U8qYpBCpN13BsiEB0CbR1Hhh4Gc0zLFuedrHJKMctHCHAGrMdG0PRM/KErzAL3CU6/eckEtmHNB3x6e3c0vA==",
         "dependencies": {
@@ -845,6 +854,12 @@
           "fsevents": "fsevents@2.3.3",
           "postcss": "postcss@8.4.35",
           "rollup": "rollup@4.13.0"
+        }
+      },
+      "vue-demi@0.14.7_vue@3.4.21": {
+        "integrity": "sha512-EOG8KXDQNwkJILkx/gPcoL/7vH+hORoBaKgGe+6W7VFMvCYJfmF2dGbvgDroVnI8LU7/kTu8mbjRZGBU1z9NTA==",
+        "dependencies": {
+          "vue": "vue@3.4.21"
         }
       },
       "vue-router@4.3.0_vue@3.4.21": {

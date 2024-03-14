@@ -48,8 +48,3 @@ const publicKeyPem = toPem(exportedPublicKey, "public");
 console.debug("\n");
 console.debug(btoa(privateKeyPem), "\n\n");
 console.debug(btoa(publicKeyPem));
-
-/**
- * @link
- * [https://github.com/wpcodevo/deno-rs256-jwt/blob/master/src/utils/generateCryptoKeys.ts](https://github.com/wpcodevo/deno-rs256-jwt/blob/master/src/utils/generateCryptoKeys.ts)
- */

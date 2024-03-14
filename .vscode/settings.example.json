@@ -1,6 +1,7 @@
 {
   "deno.enable": true,
-  "deno.disablePaths": [
-    "src"
+  "deno.enablePaths": [
+    "api",
+    "vite.config.mts"
   ]
 }
