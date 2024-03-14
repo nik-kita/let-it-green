@@ -1,4 +1,4 @@
-import { zValidator } from "@hono/zod-validator";
+import { zValidator } from "./helpers/zvalidator.middleware.ts";
 import { Hono } from "hono/mod.ts";
 import { monotonicUlid } from "ulid";
 import { IsSignInReq } from "../models/req-res/sign-in.ts";
