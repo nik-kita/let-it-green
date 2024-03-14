@@ -18,7 +18,7 @@ export class BrickOuter {
     this.#stuff.set(id, interceptor);
   }
 
-  public enroll<T extends (...args: any[]) => any>(cb: T, id: string) {
+  public enroll<T extends Fn>(cb: T, id: string): T {
     const interceptor = this.#stuff.get(id);
 
     if (!interceptor) {
@@ -29,7 +29,7 @@ export class BrickOuter {
     const intercepted_args = interceptor.args;
     if (intercepted_args) {
       if (interceptor.args_strategy === "merge") {
-        return (...args: Parameters<T>) => {
+        return ((...args: Parameters<T>) => {
           const merged =
             (args.length > intercepted_args.length ? args : intercepted_args)
               .map((
@@ -50,13 +50,13 @@ export class BrickOuter {
               });
 
           return final_fn(...merged);
-        };
+        }) as T;
       } else {
-        return () => final_fn(...intercepted_args);
+        return (() => final_fn(...intercepted_args)) as T;
       }
     }
 
-    return final_fn;
+    return final_fn as T;
   }
 }
 

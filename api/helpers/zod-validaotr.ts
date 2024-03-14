@@ -5,8 +5,8 @@ import type {
   MiddlewareHandler,
   TypedResponse,
   ValidationTargets,
-  validator,
 } from "hono/mod.ts";
+import { validator } from "hono/validator/index.ts";
 import type { z, ZodError, ZodSchema } from "zod";
 
 export type Hook<T, E extends Env, P extends string, O = {}> = (

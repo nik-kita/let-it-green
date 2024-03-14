@@ -1,4 +1,4 @@
-import { z } from "https://deno.land/x/zod@v3.22.4/index.ts";
+import { z } from "zod";
 import { User } from "@project/models/user.ts";
 import { AUTH_PROVIDERS } from "@project/shared/const.ts";
 

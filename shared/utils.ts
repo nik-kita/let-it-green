@@ -1,5 +1,5 @@
 export function is_obj<
-  T extends object | Record<string, any> = Record<string, any>,
+  T extends Record<string, any> = Record<string, any>,
 >(obj: unknown): obj is T {
   return obj != null && obj.constructor.name === "Object";
 }

@@ -5,9 +5,6 @@
     "hono/": "https://deno.land/x/hono@v4.0.10/",
     "@hono/zod-validator": "./api/helpers/zod-validaotr.ts",
     "vue3-google-login": "npm:vue3-google-login",
-    "@project/": "./",
-    "@project/src/": "./YOU_SHOULD_NOT_IMPORT_FROM_UI/",
-    "./src/": "./YOU_SHOULD_NOT_IMPORT_FROM_UI/",
-    "../src/": "./YOU_SHOULD_NOT_IMPORT_FROM_UI/"
+    "@project/": "./"
   }
 }

@@ -4,7 +4,6 @@ import Button from '../components/Button.vue';
 import GButtonWrapper from '../components/GButtonWrapper.vue';
 import Placeholder from '../components/Placeholder.vue';
 
-
 const mockAuth = ref(false);
 const loginRes = ref<object>();
 const googleRes = ref({
@@ -20,10 +19,12 @@ const handleCredentials = async (res: unknown) => {
 };
 const makeLoginApiReq = async () => {
   try {
-
     const data = await fetch('http://localhost:3000/api/sign-in', {
       method: 'post',
       body: JSON.stringify(googleRes.value),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
     console.log(data);
     if (!data.ok) {
@@ -35,6 +36,12 @@ const makeLoginApiReq = async () => {
   } catch (e) {
     loginRes.value = { error: String(e) };
   }
+}
+const hello = ref('...');
+const hello_world_api = async () => {
+  const res = await fetch('http://localhost:3000');
+  console.log(res);
+  hello.value = await res.text();
 }
 </script>
 
@@ -64,6 +71,12 @@ const makeLoginApiReq = async () => {
       credentials
       above</Button>
   </Placeholder>
+  <Placeholder height="50px">
+    <Button @click="hello_world_api">
+      hello world
+    </Button>
+  </Placeholder>
+  <pre>{{ hello }}</pre>
   <pre v-if="loginRes">{{ loginRes }}</pre>
 </template>
 
