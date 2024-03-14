@@ -1,5 +1,5 @@
-import { z } from "https://deno.land/x/zod@v3.21.4/mod.ts";
-import { AUTH_PROVIDERS, FULL_NAME_REGEX } from "@project/shared/const.ts";
+import { z } from "zod";
+import { AUTH_PROVIDERS, FULL_NAME_REGEX } from "../shared/const.ts";
 
 export const IsUser = z.object({
   id: z

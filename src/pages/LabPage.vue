@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { IsSignInReq, SignInReq } from '../../models/req-res/sign-in.ts';
 import { ref } from 'vue';
 import Button from '../components/Button.vue';
 import GButtonWrapper from '../components/GButtonWrapper.vue';
@@ -19,14 +20,19 @@ const handleCredentials = async (res: unknown) => {
 };
 const makeLoginApiReq = async () => {
   try {
+    const signInPayload: SignInReq = {
+      auth_provider: 'google',
+      client_id: googleRes.value.clientId,
+      credential: googleRes.value.credential,
+    };
+    const payload = IsSignInReq.parse(signInPayload);
     const data = await fetch('http://localhost:3000/api/sign-in', {
       method: 'post',
-      body: JSON.stringify(googleRes.value),
+      body: JSON.stringify(payload),
       headers: {
         'Content-Type': 'application/json',
       },
     });
-    console.log(data);
     if (!data.ok) {
       loginRes.value = { error: 'Error in API call', data: JSON.parse(JSON.stringify(data)) };
       return;
@@ -40,7 +46,6 @@ const makeLoginApiReq = async () => {
 const hello = ref('...');
 const hello_world_api = async () => {
   const res = await fetch('http://localhost:3000');
-  console.log(res);
   hello.value = await res.text();
 }
 </script>

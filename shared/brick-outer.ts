@@ -1,9 +1,7 @@
 import { is_obj } from "./utils.ts";
 
 export class BrickOuter {
-  private constructor() {
-    console.log("BrickOuter_simple_implementation");
-  }
+  private constructor() {}
 
   public static init() {
     return new BrickOuter();

@@ -1,4 +1,4 @@
-import { api } from "@project/api/api.ts";
+import { api } from "./api.ts";
 import { showRoutes } from "hono/helper/dev/index.ts";
 import { cors } from "hono/middleware/cors/index.ts";
 import { logger } from "hono/middleware/logger/index.ts";

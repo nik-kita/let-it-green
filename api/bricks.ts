@@ -1,4 +1,4 @@
-import { BrickOuter } from "@project/shared/brick-outer.ts";
+import { BrickOuter } from "../shared/brick-outer.ts";
 import { cors } from "hono/middleware/cors/index.ts";
 
 const _bricks = BrickOuter.init();

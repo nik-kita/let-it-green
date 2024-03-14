@@ -1,10 +1,10 @@
 import { z } from "zod";
-import { User } from "@project/models/user.ts";
-import { AUTH_PROVIDERS } from "@project/shared/const.ts";
+import { type User } from "../user.ts";
+import { AUTH_PROVIDERS } from "../../shared/const.ts";
 
 export const IsGoogleSignInReq = z.object({
-  credential: z.string().min(20).max(100),
-  client_id: z.string().min(20).max(100),
+  credential: z.string(),
+  client_id: z.string(),
   auth_provider: z.literal("google" satisfies typeof AUTH_PROVIDERS[number]),
 });
 export const IsSignInReq = z.union([
