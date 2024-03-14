@@ -5,15 +5,16 @@
   ],
   "extends": "@vue/tsconfig/tsconfig.json",
   "compilerOptions": {
+    "target": "ESNext",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "verbatimModuleSyntax": false,
+    "typeRoots": [
+      "dev-hack/node_modules"
+    ],
     "rootDir": ".",
-    "paths": {
-      "@project/shared/*": [
-        "./shared/*"
-      ],
-      "@project/models/*": [
-        "./models/*"
-      ]
-    },
     "allowImportingTsExtensions": true
   }
 }

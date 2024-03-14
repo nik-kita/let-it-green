@@ -4,7 +4,6 @@
     "zod": "https://deno.land/x/zod@v3.22.4/mod.ts",
     "hono/": "https://deno.land/x/hono@v4.0.10/",
     "@hono/zod-validator": "./api/helpers/zod-validaotr.ts",
-    "vue3-google-login": "npm:vue3-google-login",
-    "@project/": "./"
+    "vue3-google-login": "npm:vue3-google-login"
   }
 }
