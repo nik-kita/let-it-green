@@ -4,26 +4,22 @@ import { AUTH_PROVIDERS, FULL_NAME_REGEX } from "../shared/const.ts";
 export const IsUser = z.object({
   id: z
     .string()
-    .uuid()
+    .ulid()
     .describe("primary"),
   sub: z
     .string()
-    .min(20)
-    .max(100)
-    .describe("Unique identifier for auth provider"),
+    .describe("unique"),
   createdAt: z
     .number()
     .int(),
   email: z
     .string()
-    .email()
-    .optional(),
+    .email(),
   name: z
     .string()
     .regex(FULL_NAME_REGEX),
   auth_provider: z
-    .enum(AUTH_PROVIDERS)
-    .optional(),
+    .enum(AUTH_PROVIDERS),
   picture: z.string()
     .url()
     .optional(),

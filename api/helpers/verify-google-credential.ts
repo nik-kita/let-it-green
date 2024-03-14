@@ -2,6 +2,7 @@ import {
   createRemoteJWKSet,
   jwtVerify,
 } from "https://deno.land/x/jose@v4.13.1/index.ts";
+import { SuccessGoogleVerifyRes } from "../../models/hardcoded-types/success-google-verify-res.ts";
 import { bricks } from "../bricks.ts";
 
 export const verify_google_credential = bricks
@@ -28,10 +29,12 @@ export const verify_google_credential = bricks
         new URL(remote_google_jwk_set_url),
       );
 
-      return jwt_verify_fn(credential, JWKS, {
+      const { payload } = await jwt_verify_fn(credential, JWKS, {
         issuer,
         audience: google_client_id,
       });
+
+      return payload as Partial<SuccessGoogleVerifyRes["payload"]>;
     },
     "verify_google_credential",
   );

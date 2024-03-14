@@ -14,6 +14,8 @@ export class BrickOuter {
       throw new Error(`This id (${id}) is already the member of BrickOuter`);
     }
     this.#stuff.set(id, interceptor);
+
+    return this;
   }
 
   public enroll<T extends Fn>(cb: T, id: string): T {

@@ -4,3 +4,7 @@ node_modules
 dist
 dist-ssr
 .vite
+
+lab.db
+lab.db-shm
+lab.db-wal

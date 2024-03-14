@@ -11,6 +11,7 @@
       "npm:@vue/tsconfig@latest": "npm:@vue/tsconfig@0.5.1",
       "npm:google-auth-library": "npm:google-auth-library@9.6.3",
       "npm:google-auth-library@latest": "npm:google-auth-library@9.6.3",
+      "npm:superjson@1.13.3": "npm:superjson@1.13.3",
       "npm:vite": "npm:vite@5.1.5",
       "npm:vite@4.5.0": "npm:vite@4.5.0",
       "npm:vite@5.1.5": "npm:vite@5.1.5",
@@ -23,7 +24,8 @@
       "npm:vue3-google-login@latest": "npm:vue3-google-login@2.0.26_vue@3.4.21",
       "npm:vue@^3.3.13": "npm:vue@3.4.21",
       "npm:vue@latest": "npm:vue@3.4.21",
-      "npm:zod": "npm:zod@3.22.4"
+      "npm:zod": "npm:zod@3.22.4",
+      "npm:zod@latest": "npm:zod@3.22.4"
     },
     "npm": {
       "@babel/parser@7.24.0": {
@@ -531,6 +533,12 @@
         "integrity": "sha512-zRpUiDwd/xk6ADqPMATG8vc9VPrkck7T07OIx0gnjmJAnHnTVXNQG3vfvWNuiZIkwu9KrKdA1iJKfsfTVxE6NA==",
         "dependencies": {}
       },
+      "copy-anything@3.0.5": {
+        "integrity": "sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==",
+        "dependencies": {
+          "is-what": "is-what@4.1.16"
+        }
+      },
       "csstype@3.1.3": {
         "integrity": "sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==",
         "dependencies": {}
@@ -691,6 +699,10 @@
         "integrity": "sha512-hFoiJiTl63nn+kstHGBtewWSKnQLpyb155KHheA1l39uvtO9nWIop1p3udqPcUd/xbF1VLMO4n7OI6p7RbngDg==",
         "dependencies": {}
       },
+      "is-what@4.1.16": {
+        "integrity": "sha512-ZhMwEosbFJkA0YhFnNDgTM4ZxDRsS6HqTo7qsZM08fehyRYIYa0yHu5R6mgo1n/8MgaPBXiPimPD77baVFYg+A==",
+        "dependencies": {}
+      },
       "json-bigint@1.0.0": {
         "integrity": "sha512-SiPv/8VpZuWbvLSMtTDU8hEfrZWg/mH/nV/b4o0CYbSxu1UIQPLdwKOCIyLQX+VIPO5vrLX3i8qtqFyhdPSUSQ==",
         "dependencies": {
@@ -798,6 +810,12 @@
         "integrity": "sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==",
         "dependencies": {}
       },
+      "superjson@1.13.3": {
+        "integrity": "sha512-mJiVjfd2vokfDxsQPOwJ/PtanO87LhpYY88ubI5dUB1Ab58Txbyje3+jpm+/83R/fevaq/107NNhtYBLuoTrFg==",
+        "dependencies": {
+          "copy-anything": "copy-anything@3.0.5"
+        }
+      },
       "tr46@0.0.3": {
         "integrity": "sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==",
         "dependencies": {}
@@ -882,6 +900,8 @@
     "https://deno.land/std@0.135.0/collections/bs_tree.ts": "d373948d3ad12a99f3f28d6046361042b574c157f8f6f53907ae9788b93b962d",
     "https://deno.land/std@0.135.0/collections/rb_node.ts": "6fef24e118ee6020824850015edaab35e78566dd0e122a1dacd6c288d4d5b2f7",
     "https://deno.land/std@0.135.0/collections/rb_tree.ts": "e2c7f240e291f2a776af3a781ef91f194c24028658f6ccee6c3a8b7c734b25e5",
+    "https://deno.land/std@0.203.0/dotenv/load.ts": "0636983549b98f29ab75c9a22a42d9723f0a389ece5498fe971e7bb2556a12e2",
+    "https://deno.land/std@0.203.0/dotenv/mod.ts": "1da8c6d0e7f7d8a5c2b19400b763bc11739df24acec235dda7ea2cfd3d300057",
     "https://deno.land/std@0.204.0/assert/assert.ts": "9a97dad6d98c238938e7540736b826440ad8c1c1e54430ca4c4e623e585607ee",
     "https://deno.land/std@0.204.0/assert/assertion_error.ts": "4d0bde9b374dfbcbe8ac23f54f567b77024fb67dbb1906a852d67fe050d42f56",
     "https://deno.land/std@0.204.0/jsonc/parse.ts": "c1096e2b7ffb4996d7ed841dfdb29a4fccc78edcc55299beaa20d6fe5facf7b6",

@@ -1,8 +1,11 @@
 import { zValidator } from "@hono/zod-validator";
-import { verify_google_credential } from "./helpers/verify-google-credential.ts";
-import { IsSignInReq } from "../models/req-res/sign-in.ts";
 import { Hono } from "hono/mod.ts";
+import { monotonicUlid } from "ulid";
+import { IsSignInReq } from "../models/req-res/sign-in.ts";
+import { User } from "../models/user.ts";
 import { bricks } from "./bricks.ts";
+import { verify_google_credential } from "./helpers/verify-google-credential.ts";
+import { users } from "./services/users.ts";
 
 export const api = new Hono()
   .post(...[
@@ -18,8 +21,30 @@ export const api = new Hono()
           google_client_id: auth_payload.client_id,
         });
 
-        return c.json(res);
+        if (!res.name || !res.sub || !res.email) {
+          throw new Error("Unexpected: 'name | email | sub' is not present");
+        }
+
+        const prev = await users.get_by_sub(res.sub);
+
+        if (prev) {
+          return c.json(prev);
+        }
+
+        const user: User = {
+          createdAt: Date.now(),
+          id: monotonicUlid(),
+          name: res.name,
+          sub: res.sub,
+          auth_provider: "google",
+          email: res.email,
+          picture: res.picture,
+        };
+
+        const db_res = await users.insert(user);
+
+        return c.json(db_res);
       },
-      "asdf",
+      "/sign-in",
     ),
   ]);
