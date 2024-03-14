@@ -1,9 +1,11 @@
 {
   "imports": {
+    "djwt": "https://deno.land/x/djwt@v3.0.1/mod.ts",
     "pentagon": "https://deno.land/x/pentagon@v0.1.5/mod.ts",
     "ulid": "https://deno.land/std@0.219.0/ulid/mod.ts",
     "zod": "https://deno.land/x/zod@v3.21.4/mod.ts",
     "hono/": "https://deno.land/x/hono@v4.0.10/",
-    "vue3-google-login": "npm:vue3-google-login"
+    "vue3-google-login": "npm:vue3-google-login",
+    "deno/std/": "https://deno.land/std@0.219.0/"
   }
 }

@@ -24,6 +24,11 @@ export const verify_google_credential = bricks
         issuer = "https://accounts.google.com",
         jwt_verify_fn = jwtVerify,
       } = options;
+      const gCredentialId = Deno.env.get("VITE_GOOGLE_CLIENT_ID");
+
+      if (gCredentialId !== google_client_id) {
+        throw new Error("Unknown google client id.");
+      }
 
       const JWKS = await create_jwk_set_fn(
         new URL(remote_google_jwk_set_url),

@@ -888,6 +888,7 @@
     }
   },
   "redirects": {
+    "https://deno.land/x/djwt/mod.ts": "https://deno.land/x/djwt@v3.0.1/mod.ts",
     "https://deno.land/x/pentagon/mod.ts": "https://deno.land/x/pentagon@v0.1.5/mod.ts",
     "https://deno.land/x/vite_deno_plugin/mod.ts": "https://deno.land/x/vite_deno_plugin@v0.9.4/mod.ts"
   },
